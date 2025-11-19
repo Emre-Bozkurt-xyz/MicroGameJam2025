@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://3i5s37pnwpwc"]
+
+[ext_resource type="Script" path="res://scenes/microgame/microgame.gd" id="1_oyxbn"]
+[ext_resource type="PackedScene" uid="uid://ddhoio73023ba" path="res://scenes/bomb_timer/bomb_timer.tscn" id="2_gg47g"]
+
+[node name="Microgame" type="Node2D" node_paths=PackedStringArray("bomb_timer")]
+script = ExtResource("1_oyxbn")
+bomb_timer = NodePath("BombTimer")
+
+[node name="BombTimer" parent="." instance=ExtResource("2_gg47g")]
+position = Vector2(204, 696)
