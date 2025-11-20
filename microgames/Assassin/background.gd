@@ -22,10 +22,13 @@ func _input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
-	var target_x = lerp(min_x, max_x, scroll_x)
+	var screen_w = get_viewport_rect().size.x
+	var screen_h = get_viewport_rect().size.y
+	
+	var target_x = lerp(min_x + (screen_w / 2), max_x + (screen_w / 2), scroll_x)
 	position.x = lerp(position.x, target_x, smoothing * delta)
 	
-	var target_y = lerp(min_y, max_y, scroll_y)
+	var target_y = lerp(min_y + (screen_w / 2), max_y + (screen_w / 2), scroll_y)
 	position.y = lerp(position.y, target_y, smoothing * delta)
 
 
