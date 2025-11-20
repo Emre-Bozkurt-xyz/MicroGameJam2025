@@ -6,19 +6,60 @@ var scope_tween: Tween
 
 @onready var gunshot: AudioStreamPlayer2D = $Gunshot
 
+@onready var gun_cd_timer: Timer = $GunCDTimer
+@export var gun_cd: float = 1.0
+var gun_flag: bool = true
+
 func _ready() -> void:
 	super()
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	gun_cd_timer.wait_time = gun_cd
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE) 
 	
 	if event.is_action_pressed("mouse_left"):
-		gunshot.play()
+		attempt_fire()
+
+func attempt_fire():
+	if not gun_flag:
+		return
+	gun_flag = false
+	
+	gun_cd_timer.start()
+	
+	var hit := _check_hit()
+	if hit:
+		var victim = hit.collider
+		if victim.is_in_group("assassin_victim"):
+			print("HIT victim: ", victim.name)
 		
-		_pump_scope()
+	gunshot.play()
+	_pump_scope()
+	
+	await gun_cd_timer.timeout
+	
+	gun_flag = true
+
+func _check_hit() -> Dictionary:
+	var marker: Node2D = scope.get_node("Marker")
+	var marker_pos: Vector2 = marker.global_position
+
+	var space_state := get_world_2d().direct_space_state
+
+	var params := PhysicsPointQueryParameters2D.new()
+	params.position = marker_pos
+	params.collide_with_bodies = true
+	params.collide_with_areas = true
+
+	var results: Array = space_state.intersect_point(params, 8)
+	if results.size() > 0:
+		return results[0] 
+	return {}
+
 
 func _pump_scope() -> void:
 	# stop previous tween if still running
