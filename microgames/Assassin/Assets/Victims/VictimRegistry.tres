@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="VictimRegistry" load_steps=6 format=3 uid="uid://ktro1o0yo52c"]
+
+[ext_resource type="Script" uid="uid://5iln2os6m4di" path="res://microgames/Assassin/Assets/Victims/VictimRegistry.gd" id="1_17vu3"]
+[ext_resource type="Texture2D" uid="uid://dnaj3e21v27ht" path="res://microgames/Assassin/Assets/Victims/victim1.png" id="2_npc46"]
+[ext_resource type="Texture2D" uid="uid://t7gmsoydepe" path="res://microgames/Assassin/Assets/Victims/victim2.png" id="3_x7y1u"]
+[ext_resource type="Texture2D" uid="uid://bg605sf6y0fyo" path="res://microgames/Assassin/Assets/Victims/victim3.png" id="4_bsqr7"]
+[ext_resource type="Texture2D" uid="uid://bbsvuplkljybh" path="res://microgames/Assassin/Assets/Victims/victim4.png" id="5_g0p3g"]
+
+[resource]
+script = ExtResource("1_17vu3")
+victims = Array[Texture2D]([ExtResource("2_npc46"), ExtResource("3_x7y1u"), ExtResource("4_bsqr7"), ExtResource("5_g0p3g")])
+metadata/_custom_type_script = "uid://5iln2os6m4di"

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://koyn58n0ddv1"]
+
+[ext_resource type="Texture2D" uid="uid://byuj6ksad1x13" path="res://microgames/Assassin/Assets/blood_splatter.png" id="1_et0gi"]
+
+[node name="BloodSplatter" type="Sprite2D"]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_et0gi")
